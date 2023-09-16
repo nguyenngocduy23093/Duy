@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #fff; 
+}
+
+.color-picker {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.color-box {
+    background-color: #000000; 
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+#color-code {
+    font-size: 24px;
+    color: #fff;
+}
+
+#copy-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#random-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#gradient-color {
+    margin-top: 10px;
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="color-picker">
+        <div class="color-box">
+            <p id="color-code">#000000</p>
+            <button id="copy-button">Copy</button>
+        </div>
+        <button id="random-button">Random Color</button>
+        <input type="color" id="gradient-color">
+    </div>
+    <script >
+        const colorBox = document.querySelector('.color-box');
+const colorCode = document.getElementById('color-code');
+const copyButton = document.getElementById('copy-button');
+const randomButton = document.getElementById('random-button');
+const gradientColor = document.getElementById('gradient-color');
+function generateRandomColor() {
+    const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+    colorBox.style.backgroundColor = randomColor;
+    colorCode.innerText = randomColor;
+}
+randomButton.addEventListener('click', generateRandomColor);
+copyButton.addEventListener('click', () => {
+    const codeText = colorCode.innerText;
+    const textArea = document.createElement('textarea');
+    textArea.value = codeText;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+});
+gradientColor.addEventListener('input', () => {
+    colorBox.style.backgroundColor = gradientColor.value;
+    colorCode.innerText = gradientColor.value;
+});
+
+generateRandomColor();
+    </script>
+</body>
+</html>

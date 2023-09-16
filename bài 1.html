@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<title>Tìm số chính phương</title>
+<html>
+  <head>
+<style>
+  body{
+    background-color: gray;
+    padding: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  h1{
+    color: blue;
+  }
+</style>
+  </head>
+  <body>
+<div class="container">
+<h1>Tìm số chính phương</h1>
+<input type="number" id="numberA" placeholder="Nhập số A">
+<input type="number" id="numberB" placeholder="Nhập số B">
+<button onclick="soChinhPhuong()">Hiển Thị Số Chính Phương</button>
+<p id="result"></p>
+</div>
+</div>
+<script>
+  function soChinhPhuong(){
+    var A=parseInt(document.getElementById("numberA").value);
+    var B=parseInt(document.getElementById("numberB").value);
+    var result=" ";
+    for(var i =A;i<=B;i++ ){
+if(Math.sqrt(i)%1===0){
+  result += i + " ";
+}
+    }
+    document.getElementById("result").innerHTML=result;
+  }
+</script>
+  </body>
+</html>
